@@ -1,4 +1,5 @@
 /bin
 .env
+/cache
 composer.lock
 /vendor
