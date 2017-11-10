@@ -8,5 +8,8 @@
         "psr-4": {
             "Qcloud\\Sms\\": "src/"
         }
+    },
+    "require-dev": {
+        "sami/sami": "dev-master"
     }
 }

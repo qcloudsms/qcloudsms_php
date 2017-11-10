@@ -4,6 +4,10 @@ namespace Qcloud\Sms;
 
 use Qcloud\Sms\SmsSenderUtil;
 
+/**
+ * 发送语音通知类
+ *
+ */
 class SmsVoicePromptSender
 {
     private $url;
@@ -11,6 +15,12 @@ class SmsVoicePromptSender
     private $appkey;
     private $util;
 
+    /**
+	 * 构造函数
+     *
+     * @param string $appid  sdkappid
+	 * @param string $appkey sdkappid对应的appkey
+     */
     public function __construct($appid, $appkey)
     {
         $this->url = "https://yun.tim.qq.com/v5/tlsvoicesvr/sendvoiceprompt";
@@ -21,30 +31,7 @@ class SmsVoicePromptSender
 
     /**
      *
-     * 语言验证码发送
-     *
-     * 请求包体：
-     * {
-     *   "tel": {
-     *     "nationcode": "86",
-     *     "mobile": "13788888888"
-     *   },
-     *   "prompttype": 2,
-     *   "promptfile": "语音内容文本",
-     *   "playtimes": 2,
-     *   "sig": "30db206bfd3fea7ef0db929998642c8ea54cc7042a779c5a0d9897358f6e9505",
-     *   "time": 1457336869,
-     *   "ext": ""
-     * }
-     *
-     * 应答包体：
-     * {
-     *   "result": 0,
-     *   "errmsg": "OK",
-     *   "ext": "",
-     *   "sid": "xxxxxxx",
-     *   "fee": 1
-     * }
+     * 发送语音通知
      *
      * @param string $nationCode  国家码，如 86 为中国
      * @param string $phoneNumber 不带国家码的手机号
@@ -52,7 +39,7 @@ class SmsVoicePromptSender
      * @param string $msg         信息内容，必须与申请的模板格式一致，否则将返回错误
      * @param string $playtimes   播放次数，可选，最多3次，默认2次
      * @param string $ext         用户的session内容，服务端原样返回，可选字段，不需要可填空串
-     * @return string json字符串，格式参考"应答包体"，详细内容参见协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档
      */
     public function send($nationCode, $phoneNumber, $prompttype, $msg, $playtimes = 2, $ext = "")
     {

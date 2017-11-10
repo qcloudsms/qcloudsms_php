@@ -4,6 +4,10 @@ namespace Qcloud\Sms;
 
 use Qcloud\Sms\SmsSenderUtil;
 
+/**
+ * 单发短信类
+ *
+ */
 class SmsSingleSender
 {
     private $url;
@@ -11,6 +15,12 @@ class SmsSingleSender
     private $appkey;
     private $util;
 
+    /**
+	 * 构造函数
+     *
+     * @param string $appid  sdkappid
+	 * @param string $appkey sdkappid对应的appkey
+     */
     public function __construct($appid, $appkey)
     {
         $this->url = "https://yun.tim.qq.com/v5/tlssmssvr/sendsms";
@@ -24,36 +34,13 @@ class SmsSingleSender
      *
      * 普通单发需明确指定内容，如果有多个签名，请在内容中以【】的方式添加到信息内容中，否则系统将使用默认签名。
      *
-     * 请求包体：
-     * {
-     *   "tel": {
-     *     "nationcode": "86",
-     *     "mobile": "13788888888"
-     *   },
-     *   "type": 0,
-     *   "msg": "你的验证码是1234",
-     *   "sig": "fdba654e05bc0d15796713a1a1a2318c",
-     *   "time": 1479888540,
-     *   "extend": "",
-     *   "ext": ""
-     * }
-     *
-     * 应答包体：
-     * {
-     *   "result": 0,
-     *   "errmsg": "OK",
-     *   "ext": "",
-     *   "sid": "xxxxxxx",
-     *   "fee": 1
-     * }
-     *
      * @param int    $type        短信类型，0 为普通短信，1 营销短信
      * @param string $nationCode  国家码，如 86 为中国
      * @param string $phoneNumber 不带国家码的手机号
      * @param string $msg         信息内容，必须与申请的模板格式一致，否则将返回错误
      * @param string $extend      扩展码，可填空串
      * @param string $ext         服务端原样返回的参数，可填空串
-     * @return string json字符串，格式参考"应答包体"，详细内容参见协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档
      */
     public function send($type, $nationCode, $phoneNumber, $msg, $extend = "", $ext = "")
     {
@@ -83,34 +70,6 @@ class SmsSingleSender
     /**
      * 指定模板单发
      *
-     * 请求包体：
-     * {
-     *   "tel": {
-     *     "nationcode": "86",
-     *     "mobile": "13788888888"
-     *   },
-     *   "sign": "腾讯云",
-     *   "tpl_id": 19,
-     *   "params": [
-     *     "验证码",
-     *     "1234",
-     *     "4"
-     *   ],
-     *   "sig": "fdba654e05bc0d15796713a1a1a2318c",
-     *   "time": 1479888540,
-     *   "extend": "",
-     *   "ext": ""
-     * }
-     *
-     * 应答包体：
-     * {
-     *   "result": 0,
-     *   "errmsg": "OK",
-     *   "ext": "",
-     *   "sid": "xxxxxxx",
-     *   "fee": 1
-     * }
-     *
      * @param string $nationCode  国家码，如 86 为中国
      * @param string $phoneNumber 不带国家码的手机号
      * @param int    $templId     模板 id
@@ -118,7 +77,7 @@ class SmsSingleSender
      * @param string $sign        签名，如果填空串，系统会使用默认签名
      * @param string $extend      扩展码，可填空串
      * @param string $ext         服务端原样返回的参数，可填空串
-     * @return string json字符串，格式参考"应答包体"，详细内容参见协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档
      */
     public function sendWithParam($nationCode, $phoneNumber, $templId = 0, $params,
         $sign = "", $extend = "", $ext = "")

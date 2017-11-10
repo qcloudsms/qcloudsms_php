@@ -31,19 +31,26 @@
 
 ## 安装
 
+### Composer
+
 qcloudsms_php采用composer进行安装，要使用qcloudsms功能，只需要在composer.json中添加如下依赖：
 
 ```json
 {
   "require": {
-    "qcloudsms/qcloudsms_php": "1.0.*"
+    "qcloudsms/qcloudsms_php": "0.1.*"
   }
 }
 ```
 
+### 手动
+
+1. 手动下载或clone最新版本qcloudsms_php代码
+2. 把qcloudsms_php src目录下的代码放入Autoloading目录
+
 ## 用法
 
-> 若您对接口存在疑问，可以查阅[API文档](http://static.javadoc.io/com.github.qcloudsms/sms/0.0.1/index.html?com/github/qcloudsms/package-summary.html)。
+> 若您对接口存在疑问，可以查阅[API文档]()。
 
 - **准备必要参数**
 
@@ -162,8 +169,30 @@ try {
 }
 ```
 
+- **拉取短信回执以及回复**
+
+```php
+use Qcloud\Sms\SmsStatusPuller;
+
+try {
+    $puller = new SmsStatusPuller($appid, $appkey);
+
+    // 拉取短信回执
+    $callbackResult = $puller->pullCallback(10);
+    $callbackRsp = json_decode($callbackResult);
+    echo $callbackResult;
+
+    // 拉取回复
+    $replyResult = $puller->pullReply(10);
+    $replyRsp = json_decode($replyResult);
+    echo $replyResult;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+```
+
 > `Note:` 短信拉取功能需要联系腾讯云短信技术支持(QQ:3012203387)，量大客户可以使用此功能批量拉取，其他客户不建议使用。
 
 - **发送国际短信**
 
-国际短信参考单发短信
+国际短信与国内短信发送类似
