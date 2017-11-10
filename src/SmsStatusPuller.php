@@ -45,8 +45,8 @@ class SmsStatusPuller
         $data = new \stdClass();
         $data->sig = $this->util->calculateSigForPuller($this->appkey, $random, $curTime);
         $data->time = $curTime;
-        $data->type = type;
-        $data->max = max;
+        $data->type = $type;
+        $data->max = $max;
 
         return $this->util->sendCurlPost($wholeUrl, $data);
     }
@@ -59,7 +59,7 @@ class SmsStatusPuller
      */
     public function pullCallback($max)
     {
-        return $this->pull(0, max);
+        return $this->pull(0, $max);
     }
 
     /**
@@ -70,6 +70,6 @@ class SmsStatusPuller
 	 */
     public function pullReply($max)
     {
-        return $this->pull(1, max);
+        return $this->pull(1, $max);
     }
 }

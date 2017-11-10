@@ -35,7 +35,6 @@ class SmsMultiSender
      * 普通群发需明确指定内容，如果有多个签名，请在内容中以【】的方式添加到信息内容中，
      * 否则系统将使用默认签名。
      *
-     *【注意】海外短信无群发功能。
      *
      * @param int    $type         短信类型，0 为普通短信，1 营销短信
      * @param string $nationCode   国家码，如 86 为中国
@@ -67,7 +66,6 @@ class SmsMultiSender
     /**
      * 指定模板群发
      *
-     *【注意】海外短信无群发功能
      *
      * @param  string $nationCode   国家码，如 86 为中国
      * @param  array  $phoneNumbers 不带国家码的手机号列表

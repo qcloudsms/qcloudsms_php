@@ -79,7 +79,7 @@ try {
 }
 ```
 
-> `Note`: 如需发送国际短信，同样可以使用此接口，只需将国家码"86"改写成对应国家码号。
+> `Note`: 如需发送海外短信，同样可以使用此接口，只需将国家码"86"改写成对应国家码号。
 
 - **指定模板ID单发短信**
 
@@ -124,6 +124,7 @@ try {
 use Qcloud\Sms\SmsMultiSender;
 
 try {
+    $phoneNumbers = [$phoneNumber1, $phoneNumber2, $phoneNumber3];
     $sender = new SmsMultiSender($appid, $appkey);
     $params = ["指定模板群发", "深圳", "小明"];
     $result = $sender->sendWithParam("86", $phoneNumbers,
@@ -193,6 +194,6 @@ try {
 
 > `Note:` 短信拉取功能需要联系腾讯云短信技术支持(QQ:3012203387)，量大客户可以使用此功能批量拉取，其他客户不建议使用。
 
-- **发送国际短信**
+- **发送海外短信**
 
-国际短信与国内短信发送类似
+海外短信与国内短信发送类似
