@@ -50,7 +50,7 @@ qcloudsms_php采用composer进行安装，要使用qcloudsms功能，只需要�
 
 ## 用法
 
-> 若您对接口存在疑问，可以查阅[API文档]()。
+> 若您对接口存在疑问，可以查阅[API文档](https://qcloudsms.github.io/qcloudsms_php/)。
 
 - **准备必要参数**
 
