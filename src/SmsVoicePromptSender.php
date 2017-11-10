@@ -16,10 +16,10 @@ class SmsVoicePromptSender
     private $util;
 
     /**
-	 * 构造函数
+     * 构造函数
      *
      * @param string $appid  sdkappid
-	 * @param string $appkey sdkappid对应的appkey
+     * @param string $appkey sdkappid对应的appkey
      */
     public function __construct($appid, $appkey)
     {

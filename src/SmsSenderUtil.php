@@ -10,9 +10,9 @@ namespace Qcloud\Sms;
 class SmsSenderUtil
 {
     /**
-	 * 生成随机数
+     * 生成随机数
      *
-	 * @return int 随机数结果
+     * @return int 随机数结果
      */
     public function getRandom()
     {
@@ -20,13 +20,13 @@ class SmsSenderUtil
     }
 
     /**
-	 * 生成签名
+     * 生成签名
      *
      * @param string $appid         sdkappid
-	 * @param string $appkey        sdkappid对应的appkey
+     * @param string $appkey        sdkappid对应的appkey
      * @param string $curTime       当前时间
      * @param array  $phoneNumbers  手机号码
-	 * @return string  签名结果
+     * @return string  签名结果
      */
     public function calculateSig($appkey, $random, $curTime, $phoneNumbers)
     {
@@ -40,13 +40,13 @@ class SmsSenderUtil
     }
 
     /**
-	 * 生成签名
+     * 生成签名
      *
      * @param string $appid         sdkappid
-	 * @param string $appkey        sdkappid对应的appkey
+     * @param string $appkey        sdkappid对应的appkey
      * @param string $curTime       当前时间
      * @param array  $phoneNumbers  手机号码
-	 * @return string  签名结果
+     * @return string  签名结果
      */
     public function calculateSigForTemplAndPhoneNumbers($appkey, $random,
         $curTime, $phoneNumbers)
@@ -75,13 +75,13 @@ class SmsSenderUtil
     }
 
     /**
-	 * 生成签名
+     * 生成签名
      *
      * @param string $appid         sdkappid
-	 * @param string $appkey        sdkappid对应的appkey
+     * @param string $appkey        sdkappid对应的appkey
      * @param string $curTime       当前时间
      * @param array  $phoneNumbers  手机号码
-	 * @return string  签名结果
+     * @return string  签名结果
      */
     public function calculateSigForTempl($appkey, $random, $curTime, $phoneNumber)
     {
@@ -92,12 +92,12 @@ class SmsSenderUtil
     }
 
     /**
-	 * 生成签名
+     * 生成签名
      *
      * @param string $appid         sdkappid
-	 * @param string $appkey        sdkappid对应的appkey
+     * @param string $appkey        sdkappid对应的appkey
      * @param string $curTime       当前时间
-	 * @return string 签名结果
+     * @return string 签名结果
      */
     public function calculateSigForPuller($appkey, $random, $curTime)
     {
@@ -106,7 +106,7 @@ class SmsSenderUtil
     }
 
     /**
-	 * 发送请求
+     * 发送请求
      *
      * @param string $url      请求地址
      * @param array  $dataObj  请求内容

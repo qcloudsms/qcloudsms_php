@@ -16,10 +16,10 @@ class SmsStatusPuller
     private $util;
 
     /**
-	 * 构造函数
+     * 构造函数
      *
      * @param string $appid  sdkappid
-	 * @param string $appkey sdkappid对应的appkey
+     * @param string $appkey sdkappid对应的appkey
      */
     public function __construct($appid, $appkey)
     {
@@ -30,10 +30,10 @@ class SmsStatusPuller
     }
 
     /**
-	 * 拉取回执结果
+     * 拉取回执结果
      *
      * @param int $type 拉取类型，0表示回执结果，1表示回复信息
-	 * @param int $max  最大条数，最多100
+     * @param int $max  最大条数，最多100
      * @return string 应答json字符串，详细内容参见腾讯云协议文档
      */
     private function pull($type, $max)
@@ -52,9 +52,9 @@ class SmsStatusPuller
     }
 
     /**
-	 * 拉取回执结果
+     * 拉取回执结果
      *
-	 * @param int $max 拉取最大条数，最多100
+     * @param int $max 拉取最大条数，最多100
      * @return string 应答json字符串，详细内容参见腾讯云协议文档
      */
     public function pullCallback($max)
@@ -63,11 +63,11 @@ class SmsStatusPuller
     }
 
     /**
-	 * 拉取回复信息
+     * 拉取回复信息
      *
-	 * @param int $max 拉取最大条数，最多100
+     * @param int $max 拉取最大条数，最多100
      * @return string 应答json字符串，详细内容参见腾讯云协议文档
-	 */
+     */
     public function pullReply($max)
     {
         return $this->pull(1, $max);
