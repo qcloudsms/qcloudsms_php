@@ -105,6 +105,11 @@ class SmsSenderUtil
             ."&time=".$curTime);
     }
 
+    public function calculateSigForTemplate($appkey, $random, $curTime)
+    {
+        return hash("sha256", "appkey=".$appkey."&random=".$random."&time=".$curTime, FALSE);
+    }
+
     /**
      * 发送请求
      *

@@ -23,15 +23,15 @@ use Qcloud\Sms\SmsSenderUtil;
      */
     public function __construct($appid, $appkey)
     {
-        $this->url = [
+        $this->url    = [
             "add" = "https://yun.tim.qq.com/v5/tlssmssvr/add_template",
             "mod" = "https://yun.tim.qq.com/v5/tlssmssvr/mod_template",
             "del" = "https://yun.tim.qq.com/v5/tlssmssvr/del_template",
             "get" = "https://yun.tim.qq.com/v5/tlssmssvr/get_template"
-        ];
-        $this->appid =  $appid;
+            ];
+        $this->appid  =  $appid;
         $this->appkey = $appkey;
-        $this->util = new SmsSenderUtil();
+        $this->util   = new SmsSenderUtil();
     }
 
     /**
@@ -45,21 +45,20 @@ use Qcloud\Sms\SmsSenderUtil;
      * @param string  $remark 模板备注，比如申请原因，使用场景等，可选字段
      * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5817
      */
-    public function addTemplate($text, $type = 0, $title = "", $remark = ""){
-        $random = $this->util->getRandom();
-        $curTime = time();
-        $wholeUrl = $this->url['add'] . "?sdkappid=" . $this->appid . "&random=" . $random;
-
+    public function addTemplate($text, $type = 0, $title = "", $remark = "")
+    {
+        $random       = $this->util->getRandom();
+        $curTime      = time();
+        $wholeUrl     = $this->url['add'] . "?sdkappid=" . $this->appid . "&random=" . $random;
+        
         // 按照协议组织 post 包体
-        $data = new \stdClass();
-        $data->text = $text;
-        $data->type = (int)$type;
-        $data->title = $title;
+        $data         = new \stdClass();
+        $data->text   = $text;
+        $data->type   = (int)$type;
+        $data->title  = $title;
         $data->remark = $remark;
-        $data->sig = hash("sha256",
-            "appkey=".$this->appkey."&random=".$random."&time="
-            .$curTime, FALSE);
-        $data->time = $curTime;
+        $data->sig    = $this->util->calculateSigForTemplate($this->appkey, $random, $curTime);
+        $data->time   = $curTime;
 
         return $this->util->sendCurlPost($wholeUrl, $data);
     }
@@ -77,22 +76,21 @@ use Qcloud\Sms\SmsSenderUtil;
      * @param  string  $remark 新的模板备注，比如申请原因，使用场景等，可选字段
      * @return string  应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/8649
      */
-    public function modTemplate($tpl_id, $text, $type = 0, $title = "", $remark = ""){
-        $random = $this->util->getRandom();
-        $curTime = time();
-        $wholeUrl = $this->url['mod'] . "?sdkappid=" . $this->appid . "&random=" . $random;
-
+    public function modTemplate($tpl_id, $text, $type = 0, $title = "", $remark = "")
+    {
+        $random       = $this->util->getRandom();
+        $curTime      = time();
+        $wholeUrl     = $this->url['mod'] . "?sdkappid=" . $this->appid . "&random=" . $random;
+        
         // 按照协议组织 post 包体
-        $data = new \stdClass();
+        $data         = new \stdClass();
         $data->tpl_id = (int)$tpl_id;
-        $data->text = $text;
-        $data->type = (int)$type;
-        $data->title = $title;
+        $data->text   = $text;
+        $data->type   = (int)$type;
+        $data->title  = $title;
         $data->remark = $remark;
-        $data->sig = hash("sha256",
-            "appkey=".$this->appkey."&random=".$random."&time="
-            .$curTime, FALSE);
-        $data->time = $curTime;
+        $data->sig    = $this->util->calculateSigForTemplate($this->appkey, $random, $curTime);
+        $data->time   = $curTime;
 
         return $this->util->sendCurlPost($wholeUrl, $data);
     }
@@ -102,17 +100,16 @@ use Qcloud\Sms\SmsSenderUtil;
      * @param  array $tpl_ids 模板id，也可以通过值指定一个"tpl_id"：123
      * @return string  应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5818
      */
-    public function delTemplate($tpl_ids){
-        $random = $this->util->getRandom();
-        $curTime = time();
-        $wholeUrl = $this->url['del'] . "?sdkappid=" . $this->appid . "&random=" . $random;
-
-        $data = new \stdClass();
+    public function delTemplate($tpl_ids)
+    {
+        $random       = $this->util->getRandom();
+        $curTime      = time();
+        $wholeUrl     = $this->url['del'] . "?sdkappid=" . $this->appid . "&random=" . $random;
+        
+        $data         = new \stdClass();
         $data->tpl_id = (array)$tpl_ids;
-        $data->sig = hash("sha256",
-            "appkey=".$this->appkey."&random=".$random."&time="
-            .$curTime, FALSE);
-        $data->time = $curTime;
+        $data->sig    = $this->util->calculateSigForTemplate($this->appkey, $random, $curTime);
+        $data->time   = $curTime;
 
         return $this->util->sendCurlPost($wholeUrl, $data);
     }
@@ -124,12 +121,16 @@ use Qcloud\Sms\SmsSenderUtil;
      * @param  string $max     分页查询全量模版信息，与tpl_id字段不能同时出现，一次拉取的条数，最多50
      * @return string  应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5819
      */
-    public function pullTemplateStatus($tpl_ids, $offset = "", $max = ""){
-        $random = $this->util->getRandom();
-        $curTime = time();
-        $wholeUrl = $this->url['get'] . "?sdkappid=" . $this->appid . "&random=" . $random;
-
-        $data = new \stdClass();
+    public function pullTemplateStatus($tpl_ids, $offset = "", $max = "")
+    {
+        $random     = $this->util->getRandom();
+        $curTime    = time();
+        $wholeUrl   = $this->url['get'] . "?sdkappid=" . $this->appid . "&random=" . $random;
+        
+        $data       = new \stdClass();
+        
+        $data->sig  = $this->util->calculateSigForTemplate($this->appkey, $random, $curTime);
+        $data->time = $curTime;
 
         if (empty($offset) && empty($max)){
             $data->tpl_id = (array)$tpl_ids;
@@ -154,10 +155,7 @@ use Qcloud\Sms\SmsSenderUtil;
             $data->tpl_page = $tpl_page;
         }
         
-        $data->sig = hash("sha256",
-            "appkey=".$this->appkey."&random=".$random."&time="
-            .$curTime, FALSE);
-        $data->time = $curTime;
+        
 
         return $this->util->sendCurlPost($wholeUrl, $data);
     }
