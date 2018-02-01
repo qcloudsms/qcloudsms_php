@@ -23,10 +23,12 @@ use Qcloud\Sms\SmsSenderUtil;
      */
     public function __construct($appid, $appkey)
     {
-        $this->url['add'] = "https://yun.tim.qq.com/v5/tlssmssvr/add_template";
-        $this->url['mod'] = "https://yun.tim.qq.com/v5/tlssmssvr/mod_template";
-        $this->url['del'] = "https://yun.tim.qq.com/v5/tlssmssvr/del_template";
-        $this->url['get'] = "https://yun.tim.qq.com/v5/tlssmssvr/get_template";
+        $this->url = [
+            "add" = "https://yun.tim.qq.com/v5/tlssmssvr/add_template",
+            "mod" = "https://yun.tim.qq.com/v5/tlssmssvr/mod_template",
+            "del" = "https://yun.tim.qq.com/v5/tlssmssvr/del_template",
+            "get" = "https://yun.tim.qq.com/v5/tlssmssvr/get_template"
+        ];
         $this->appid =  $appid;
         $this->appkey = $appkey;
         $this->util = new SmsSenderUtil();
