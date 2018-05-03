@@ -38,7 +38,7 @@ class SmsMultiSender
      *
      * @param int    $type         短信类型，0 为普通短信，1 营销短信
      * @param string $nationCode   国家码，如 86 为中国
-     * @param string $phoneNumbers 不带国家码的手机号列表
+     * @param array  $phoneNumbers 不带国家码的手机号列表
      * @param string $msg          信息内容，必须与申请的模板格式一致，否则将返回错误
      * @param string $extend       扩展码，可填空串
      * @param string $ext          服务端原样返回的参数，可填空串
