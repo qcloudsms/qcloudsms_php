@@ -1,22 +1,12 @@
-腾讯云短信 PHP SDK Demo
-===
+腾讯云短信 PHP SDK DEMO
+=====
 
-## 使用
 
-1. 安装依赖
+## 使用composer
 
-```sh
-php /path/to/composer install
-```
+使用composer的项目请参考 `composer` 目录
 
-2. 配置必要参数，如SDK appid/appkey
 
-```sh
-emacs app.php
-```
+## 不使用composer
 
-3. 运行
-
-```sh
-php ./app.php
-```
+没有使用composer的项目请参考 `simple` 目录

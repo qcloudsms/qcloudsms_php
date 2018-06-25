@@ -73,7 +73,12 @@ qcloudsms_php采用composer进行安装，要使用qcloudsms功能，只需要�
 ### 手动
 
 1. 手动下载或clone最新版本qcloudsms_php代码
-2. 把qcloudsms_php src目录下的代码放入Autoloading目录
+2. 把qcloudsms_php放入项目目录
+3. `require` qcloudsms_php src目录下面的index.php，即可使用, 如把qcloudsms放在当前目录下，只需要:
+
+```php
+require __DIR__ . "/qcloudsms_php/src/index.php";
+```
 
 ## 用法
 
@@ -261,3 +266,57 @@ try {
 - **发送海外短信**
 
 海外短信与国内短信发送类似, 发送海外短信只需替换相应国家码。
+
+
+- **上传语音文件**
+
+```php
+try {
+    $filepath = "path/to/example.mp3";
+    $fileContent = file_get_contents($filepath);
+    if ($fileContent == false) {
+        throw new \Exception("can not read file " . $filepath);
+    }
+
+    $contentType = VoiceFileUploader::MP3;
+    $uploader = new VoiceFileUploader($appid, $appkey);
+    $result = $uploader->upload($fileContent, $contentType);
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+```
+
+> `Note` 语音文件上传功能需要联系腾讯云短信技术支持(QQ:3012203387)，才能开通
+
+- **按语音文件fid发送语音通知**
+
+```php
+try {
+    $fid = "73844bb649ca38f37e596ec2781ce6a56a2a3a1b.mp3";
+    $fvsender = new FileVoiceSender($appid, $appkey);
+    $result = $fvsender->send("86", $phoneNumbers[0], $fid);
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+```
+
+> `Note` 按语音文件fid发送语音通知功能需要联系腾讯云短信技术支持(QQ:3012203387)，才能开通
+
+- **指定模板发送语音通知类**
+
+```php
+try {
+    $templateId = 1013;
+    $params = ["54321"];
+    $tvsender = new TtsVoiceSender($appid, $appkey);
+    $result = $tvsender->send("86", $phoneNumbers[0], $templateId, $params);
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+```

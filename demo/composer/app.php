@@ -9,6 +9,10 @@ use Qcloud\Sms\SmsVoicePromptSender;
 use Qcloud\Sms\SmsStatusPuller;
 use Qcloud\Sms\SmsMobileStatusPuller;
 
+use Qcloud\Sms\VoiceFileUploader;
+use Qcloud\Sms\FileVoiceSender;
+use Qcloud\Sms\TtsVoiceSender;
+
 
 // 短信应用SDK AppID
 $appid = 1400009099; // 1400开头
@@ -25,16 +29,19 @@ $templateId = 7839;  // NOTE: 这里的模板ID`7839`只是一个示例，真实
 // 签名
 $smsSign = "腾讯云"; // NOTE: 这里的签名只是示例，请使用真实的已申请的签名，签名参数使用的是`签名内容`，而不是`签名ID`
 
+
 // 单发短信
 try {
     $ssender = new SmsSingleSender($appid, $appkey);
-    $result = $ssender->send(0, "86", $phoneNumber[0],
+    $result = $ssender->send(0, "86", $phoneNumbers[0],
         "【腾讯云】您的验证码是: 5678", "", "");
     $rsp = json_decode($result);
     echo $result;
 } catch(\Exception $e) {
     echo var_dump($e);
 }
+echo "\n";
+
 
 // 指定模板ID单发短信
 try {
@@ -47,6 +54,8 @@ try {
 } catch(\Exception $e) {
     echo var_dump($e);
 }
+echo "\n";
+
 
 // 群发
 try {
@@ -58,6 +67,8 @@ try {
 } catch(\Exception $e) {
     echo var_dump($e);
 }
+echo "\n";
+
 
 // 指定模板ID群发
 try {
@@ -70,26 +81,32 @@ try {
 } catch(\Exception $e) {
     echo var_dump($e);
 }
+echo "\n";
+
 
 // 发送语音验证码
 try {
     $vvcsender = new SmsVoiceVerifyCodeSender($appid, $appkey);
-    $result = $vvcsender->send("86", $phoneNumber[0], "5678", 2, "");
+    $result = $vvcsender->send("86", $phoneNumbers[0], "5678", 2, "");
     $rsp = json_decode($result);
     echo $result;
 } catch (\Exception $e) {
     echo var_dump($e);
 }
+echo "\n";
+
 
 // 发送语音通知
 try {
     $vpsender = new SmsVoicePromptSender($appid, $appkey);
-    $result = $vpsender->send("86", $phoneNumber[0], 2, "5678", "");
+    $result = $vpsender->send("86", $phoneNumbers[0], 2, "5678", "");
     $rsp = json_decode($result);
     echo $result;
 } catch (\Exception $e) {
     echo var_dump($e);
 }
+echo "\n";
+
 
 // 拉取短信回执以及回复
 try {
@@ -107,6 +124,7 @@ try {
 } catch (\Exception $e) {
     echo var_dump($e);
 }
+echo "\n";
 
 
 // 拉取单个手机短信状态
@@ -131,3 +149,54 @@ try {
 } catch (\Exception $e) {
     echo var_dump($e);
 }
+echo "\n";
+
+
+// 上传语音文件
+try {
+    $filepath = "path/to/example.mp3";
+    $fileContent = file_get_contents($filepath);
+    if ($fileContent == false) {
+        throw new \Exception("can not read file " . $filepath);
+    }
+
+    $contentType = VoiceFileUploader::MP3;
+    $uploader = new VoiceFileUploader($appid, $appkey);
+    $result = $uploader->upload($fileContent, $contentType);
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 按语音文件fid发送语音通知
+try {
+    $fid = "73844bb649ca38f37e596ec2781ce6a56a2a3a1b.mp3";
+
+    $fvsender = new FileVoiceSender($appid, $appkey);
+    $result = $fvsender->send("86", $phoneNumbers[0], $fid);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 指定模板发送语音通知类
+try {
+    $templateId = 1013;
+    $params = ["54321"];
+
+    $tvsender = new TtsVoiceSender($appid, $appkey);
+    $result = $tvsender->send("86", $phoneNumbers[0], $templateId, $params);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
