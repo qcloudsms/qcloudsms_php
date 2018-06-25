@@ -109,7 +109,7 @@
                     string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_send">send</a>(int $type, string $nationCode, string $phoneNumbers, string $msg, string $extend = &quot;&quot;, string $ext = &quot;&quot;)
+                    <a href="#method_send">send</a>(int $type, string $nationCode, array $phoneNumbers, string $msg, string $extend = &quot;&quot;, string $ext = &quot;&quot;)
         
                                             <p>普通群发</p>                </div>
                 <div class="col-md-2"></div>
@@ -170,7 +170,7 @@
                     <h3 id="method_send">
         <div class="location">at         line 47</div>
         <code>                    string
-    <strong>send</strong>(int $type, string $nationCode, string $phoneNumbers, string $msg, string $extend = &quot;&quot;, string $ext = &quot;&quot;)
+    <strong>send</strong>(int $type, string $nationCode, array $phoneNumbers, string $msg, string $extend = &quot;&quot;, string $ext = &quot;&quot;)
         </code>
     </h3>
     <div class="details">
@@ -195,7 +195,7 @@
                 <td>国家码，如 86 为中国</td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td>array</td>
                 <td>$phoneNumbers</td>
                 <td>不带国家码的手机号列表</td>
             </tr>

@@ -27,7 +27,7 @@ class VoiceFileUploader
      */
     public function __construct($appid, $appkey)
     {
-        $this->url = "https://cloud-test.tim.qq.com/v5/tlsvoicesvr/uploadvoicefile";
+        $this->url = "https://cloud.tim.qq.com/v5/tlsvoicesvr/uploadvoicefile";
         $this->appid =  $appid;
         $this->appkey = $appkey;
         $this->util = new SmsSenderUtil();
