@@ -109,7 +109,7 @@ use Qcloud\Sms\SmsSingleSender;
 
 try {
     $ssender = new SmsSingleSender($appid, $appkey);
-    $result = $ssender->send(0, "86", $phoneNumber[0],
+    $result = $ssender->send(0, "86", $phoneNumbers[0],
         "【腾讯云】您的验证码是: 5678", "", "");
     $rsp = json_decode($result);
     echo $result;
@@ -185,7 +185,7 @@ use Qcloud\Sms\SmsVoiceVerifyCodeSender;
 
 try {
     $vvcsender = new SmsVoiceVerifyCodeSender($appid, $appkey);
-    $result = $vvcsender->send("86", $phoneNumber[0], "5678", 2, "");
+    $result = $vvcsender->send("86", $phoneNumbers[0], "5678", 2, "");
     $rsp = json_decode($result);
     echo $result;
 } catch (\Exception $e) {
@@ -202,7 +202,7 @@ use Qcloud\Sms\SmsVoicePromptSender;
 
 try {
     $vpsender = new SmsVoicePromptSender($appid, $appkey);
-    $result = $vpsender->send("86", $phoneNumber[0], 2, "5678", "");
+    $result = $vpsender->send("86", $phoneNumbers[0], 2, "5678", "");
     $rsp = json_decode($result);
     echo $result;
 } catch (\Exception $e) {

@@ -16,8 +16,8 @@ class VoiceFileUploader
     private $appkey;
     private $util;
 
-    public const WAV  = "audio/wav";
-    public const MP3 = "audio/mpeg";
+    const WAV = "audio/wav";
+    const MP3 = "audio/mpeg";
 
     /**
      * 构造函数
