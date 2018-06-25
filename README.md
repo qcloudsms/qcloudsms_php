@@ -82,7 +82,7 @@ require __DIR__ . "/qcloudsms_php/src/index.php";
 
 ## 用法
 
-若您对接口存在疑问，可以查阅 [开发指南](https://cloud.tencent.com/document/product/382/13297) 、[API文档](https://qcloudsms.github.io/qcloudsms_php/) 和 [错误码](https://cloud.tencent.com/document/product/382/3771)。
+若您对接口存在疑问，可以查阅 [API文档](https://cloud.tencent.com/document/product/382/13297) 、[SDK文档](https://qcloudsms.github.io/qcloudsms_php/) 和 [错误码](https://cloud.tencent.com/document/product/382/3771)。
 
 - **准备必要参数**
 
