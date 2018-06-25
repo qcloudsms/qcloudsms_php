@@ -58,7 +58,7 @@ class FileVoiceSender
 
         // app凭证
         $data->sig = $this->util->calculateSig($this->appkey, $random,
-            $curTime, [$phoneNumber]);
+            $curTime, array($phoneNumber));
 
         // unix时间戳，请求发起时间，如果和系统时间相差超过10分钟则会返回失败
         $data->time = $curTime;

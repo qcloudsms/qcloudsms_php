@@ -55,11 +55,11 @@ class VoiceFileUploader
         $req->url = $this->url . "?sdkappid=" . $this->appid
             . "&random=" . $random . "&time=" . $curTime;
         $req->body = $fileContent;
-        $req->headers = [
+        $req->headers = array(
             "Content-Type: " . $contentType,
             "x-content-sha1: " . $fileSha1Sum,
             "Authorization: " . $auth
-        ];
+        );
 
         return $this->util->fetch($req);
     }
