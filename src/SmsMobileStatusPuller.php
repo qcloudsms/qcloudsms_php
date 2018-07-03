@@ -38,7 +38,7 @@ class SmsMobileStatusPuller
      * @param int    $beginTime    开始时间(unix timestamp)
      * @param int    $endTime      结束时间(unix timestamp)
      * @param int    $max          拉取最大条数，最多100
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5811
      */
     private function pull($type, $nationCode, $mobile, $beginTime, $endTime, $max)
     {
@@ -67,7 +67,7 @@ class SmsMobileStatusPuller
      * @param int    $beginTime    开始时间(unix timestamp)
      * @param int    $endTime      结束时间(unix timestamp)
      * @param int    $max          拉取最大条数，最多100
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5811
      */
     public function pullCallback($nationCode, $mobile, $beginTime, $endTime, $max)
     {
@@ -82,7 +82,7 @@ class SmsMobileStatusPuller
      * @param int    $beginTime    开始时间(unix timestamp)
      * @param int    $endTime      结束时间(unix timestamp)
      * @param int    $max          拉取最大条数，最多100
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5811
      */
     public function pullReply($nationCode, $mobile, $beginTime, $endTime, $max)
     {

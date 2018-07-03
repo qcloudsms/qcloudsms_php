@@ -35,7 +35,7 @@ class SmsSign
      * @param string $text   签名内容，不带【】，例如：【腾讯科技】这个签名，这里填"腾讯科技"
      * @param img $pic    签名对应的资质证明图片地址
      * @param string $remark 签名备注，比如申请原因，使用场景等
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/6038
      */
     public function addSign($text,  $pic = "", $remark = "")
     {
@@ -62,7 +62,7 @@ class SmsSign
      * @param  string $text    新的签名内容，不带【】，例如：改为【腾讯科技】这个签名，这里填"腾讯科技"
      * @param  img $pic     签名对应的资质证明图片地址
      * @param  string $remark  签名备注，比如申请原因，使用场景等
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/8650
      */
     public function modSign($sign_id, $text, $pic = "", $remark = "")
     {
@@ -85,7 +85,7 @@ class SmsSign
      * 删除短信签名
      * 
      * @param array $sign_id 签名id，也可以通过值指定一个"sign_id":123
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/6039
      */
     public function delSign($sign_ids)
     {
@@ -102,10 +102,10 @@ class SmsSign
     }
 
     /**
-     * 签名状态查询
+     * 短信签名状态查询
      * 
      * @param  array $sign_id 签名id，也可以通过值指定一个"sign_id":123
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/6040
      */
     public function getSign($sign_ids)
     {

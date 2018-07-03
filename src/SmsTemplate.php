@@ -30,7 +30,7 @@ class SmsTemplate
     }
 
     /**
-     * 添加模板
+     * 添加短信模板
      *
      * 模板审核通过，国内，海外均可使用。
      * 
@@ -58,7 +58,7 @@ class SmsTemplate
     }
 
     /**
-     * 修改模板
+     * 修改短信模板
      *
      * 已审核通过的模板不允许修改。
      * 
@@ -88,7 +88,7 @@ class SmsTemplate
     }
 
     /**
-     * 删除模板
+     * 删除短信模板
      * @param  array $tpl_ids 模板id，也可以通过值指定一个"tpl_id"：123
      * @return string  应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5818
      */
@@ -107,7 +107,7 @@ class SmsTemplate
     }
 
     /**
-     * 模板状态查询
+     * 短信模板状态查询
      * 
      * @param  array $tpl_ids 模板id，也可以通过值指定一个"tpl_id"：123
      * @return string  应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5819
@@ -127,7 +127,7 @@ class SmsTemplate
     }
     
     /**
-     * 模板状态拉取
+     * 短信模板状态拉取
      * 
      * @param  integer $offset 拉取的偏移量，初始为 0，如果要多次拉取，需赋值为上一次的 offset 与 max 字段的和
      * @param  integer $max    一次拉取的条数，最多 50

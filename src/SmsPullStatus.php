@@ -35,7 +35,7 @@ class SmsPullStatus
      * @param  string $type    拉取类型， send表示发送数据， callback表示回执数据
      * @param  int $begin_date 开始时间，yyyymmddhh 需要拉取的起始时间,精确到小时
      * @param  int $end_date   结束时间，yyyymmddhh 需要拉取的截止时间,精确到小时
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/7755
      */
     private function pull($type, $begin_date, $end_date)
     {
@@ -57,7 +57,7 @@ class SmsPullStatus
      * 
      * @param  int $begin_date 开始时间，yyyymmddhh 需要拉取的起始时间,精确到小时
      * @param  int $end_date   结束时间，yyyymmddhh 需要拉取的截止时间,精确到小时
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/7756
      */
     public function send($begin_date, $end_date)
     {
