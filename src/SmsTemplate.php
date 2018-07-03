@@ -142,7 +142,7 @@ class SmsTemplate
         $data       = new \stdClass();
         $tpl_page   = new \stdClass();
         $tpl_page->max = (int)$max;
-        $tpl_page->offset = (int)$max;
+        $tpl_page->offset = (int)$offset;
 
         $data->tpl_page = $tpl_page;
         $data->sig  = $this->util->calculateSigForPuller($this->appkey, $random, $curTime);

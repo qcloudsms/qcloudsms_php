@@ -8,6 +8,9 @@ use Qcloud\Sms\SmsVoiceVerifyCodeSender;
 use Qcloud\Sms\SmsVoicePromptSender;
 use Qcloud\Sms\SmsStatusPuller;
 use Qcloud\Sms\SmsMobileStatusPuller;
+use Qcloud\Sms\SmsSign;
+use Qcloud\Sms\SmsTemplate;
+use Qcloud\Sms\SmsPullStatus;
 
 use Qcloud\Sms\VoiceFileUploader;
 use Qcloud\Sms\FileVoiceSender;
@@ -192,6 +195,188 @@ try {
 
     $tvsender = new TtsVoiceSender($appid, $appkey);
     $result = $tvsender->send("86", $phoneNumbers[0], $templateId, $params);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 添加短信签名
+try {
+    $text = "公司名称";
+    $pic = "./sms.png";
+    $remark = "公司名称";
+
+    $ssign = new SmsSign($appid, $appkey);
+    $result = $ssign->addSign($text, $pic, $remark);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 修改短信签名
+// 已审核通过的签名不支持修改
+try {
+    $signId = 111;
+    $text = "APP名称";
+    $pic = "./sms.png";
+    $remark = "APP名称，APP链接:https://xxxx";
+
+    $ssign = new SmsSign($appid, $appkey);
+    $result = $ssign->modSign($signId, $text, $pic, $remark);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 删除短信签名
+try {
+    $signIds = [111, 222];
+
+    $ssign = new SmsSign($appid, $appkey);
+    $result = $ssign->delSign($signIds);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 短信签名状态查询
+try {
+    $signIds = [111, 222];
+
+    $ssign = new SmsSign($appid, $appkey);
+    $result = $ssign->getSign($signIds);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 添加短信模板
+try {
+    $test = "您的验证码是{1}，请在{2}分钟内填写，如非本人操作，请忽略。";
+    $type = 0;
+    $title = "验证码";
+    $remark = "发送给会员的验证码短信";
+
+    $stemp = new SmsTemplate($appid, $appkey);
+    $result = $stemp->addTemplate($test, $type, $title, $remark);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 修改短信模板
+// 已审核通过的模板不支持修改
+try {
+    $templateId = 111;
+    $test = "您的验证码是{1}，请在{2}分钟内填写，如非本人操作，请联系官网客服反馈。";
+    $type = 0;
+    $title = "验证码修改";
+    $remark = "发送给会员的验证码短信";
+
+    $stemp = new SmsTemplate($appid, $appkey);
+    $result = $stemp->modTemplate($templateId, $test, $type, $title, $remark);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 删除短信模板
+try {
+    $templateIds = [111, 222];
+
+    $stemp = new SmsTemplate($appid, $appkey);
+    $result = $stemp->delTemplate($templateIds);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 短信模板状态查询
+try {
+    $templateIds = [111, 222];
+
+    $stemp = new SmsTemplate($appid, $appkey);
+    $result = $stemp->getTemplate($templateIds);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 短信模板状态拉取
+try {
+    $offset = 0;
+    $max = 50;
+
+    $stemp = new SmsTemplate($appid, $appkey);
+    $result = $stemp->pullTemplate($offset, $max);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 发送数据统计
+try {
+    $beginDate = 2018070100;
+    $endDate = 2018070323;
+
+    $stemp = new SmsPullStatus($appid, $appkey);
+    $result = $stemp->send($beginDate, $endDate);
+
+    $rsp = json_decode($result);
+    echo $result;
+} catch (\Exception $e) {
+    echo var_dump($e);
+}
+echo "\n";
+
+
+// 回执数据统计
+try {
+    $beginDate = 2018070100;
+    $endDate = 2018070323;
+
+    $stemp = new SmsPullStatus($appid, $appkey);
+    $result = $stemp->callback($beginDate, $endDate);
 
     $rsp = json_decode($result);
     echo $result;
