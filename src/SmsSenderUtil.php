@@ -208,6 +208,7 @@ class SmsSenderUtil
 
     /**
      * 图片base格式化
+     * 
      * @param  img $img_file 图片地址
      * @return string           图片base64编码字符串
      */

@@ -10,7 +10,7 @@ use Qcloud\Sms\SmsSenderUtil;
  */
 class SmsPullStatus
 {
-	private $url;
+    private $url;
     private $appid;
     private $appkey;
     private $util;
