@@ -205,4 +205,28 @@ class SmsSenderUtil
 
         return $result;
     }
+
+    /**
+     * 图片base格式化
+     * @param  img_file $img_file 图片地址
+     * @return string           图片base64编码字符串
+     */
+    public function imgToBase64($img_file) {
+        $img_base64 = '';
+        if (file_exists($img_file)) {
+            $img_info = getimagesize($img_file);
+
+            if ($img_info[2] === 2 || $img_info[2] === 3) {
+                $fp = fopen($img_file, "r");
+                if ($fp) {
+                    $filesize = filesize($img_file);
+                    $content = fread($fp, $filesize);
+                    $img_base64 = chunk_split(base64_encode($content));
+                }
+                fclose($fp);
+            }
+        }
+
+        return $img_base64;
+    }
 }
