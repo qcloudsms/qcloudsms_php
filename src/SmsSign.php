@@ -107,7 +107,7 @@ class SmsSign
      * @param  array $sign_id 签名id，也可以通过值指定一个"sign_id":123
      * @return string 应答json字符串，详细内容参见腾讯云协议文档
      */
-    public function gitSign($sign_ids)
+    public function getSign($sign_ids)
     {
     	$random = $this->util->getRandom();
         $curTime = time();

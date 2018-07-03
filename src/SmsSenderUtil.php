@@ -208,7 +208,7 @@ class SmsSenderUtil
 
     /**
      * 图片base格式化
-     * @param  img_file $img_file 图片地址
+     * @param  img $img_file 图片地址
      * @return string           图片base64编码字符串
      */
     public function imgToBase64($img_file) {
