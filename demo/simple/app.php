@@ -112,7 +112,7 @@ try {
     $sspuller = new SmsStatusPuller($appid, $appkey);
 
     // 拉取短信回执
-    $callbackResult = $spuller->pullCallback(10);
+    $callbackResult = $sspuller->pullCallback(10);
     $callbackRsp = json_decode($callbackResult);
     echo $callbackResult;
 
