@@ -23,7 +23,7 @@ class SmsVoiceVerifyCodeSender
      */
     public function __construct($appid, $appkey)
     {
-        $this->url = "https://yun.tim.qq.com/v5/tlsvoicesvr/sendvoice";
+        $this->url = "https://cloud.tim.qq.com/v5/tlsvoicesvr/sendvoice";
         $this->appid =  $appid;
         $this->appkey = $appkey;
         $this->util = new SmsSenderUtil();

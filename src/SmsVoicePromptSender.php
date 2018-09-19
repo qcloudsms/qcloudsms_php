@@ -23,7 +23,7 @@ class SmsVoicePromptSender
      */
     public function __construct($appid, $appkey)
     {
-        $this->url = "https://yun.tim.qq.com/v5/tlsvoicesvr/sendvoiceprompt";
+        $this->url = "https://cloud.tim.qq.com/v5/tlsvoicesvr/sendvoiceprompt";
         $this->appid =  $appid;
         $this->appkey = $appkey;
         $this->util = new SmsSenderUtil();
