@@ -54,7 +54,13 @@ class FileVoiceSender
         $tel->mobile = "".$phoneNumber;
         $data->tel = $tel;
         $data->fid = $fid;
-        $data->playtimes = $playtimes;
+        if ($playtimes == 1) {
+            $data->playtimes = 1;
+        }  else if ($playtimes == 3) {
+            $data->playtimes = 3;
+        } else {
+            $data->playtimes = 2;
+        }
 
         // app凭证
         $data->sig = $this->util->calculateSig($this->appkey, $random,

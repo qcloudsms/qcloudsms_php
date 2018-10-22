@@ -58,7 +58,15 @@ class SmsVoicePromptSender
         $data->promptfile = $msg;
         // 固定值 2
         $data->prompttype = $prompttype;
-        $data->playtimes = $playtimes;
+
+        if ($playtimes == 1) {
+            $data->playtimes = 1;
+        }  else if ($playtimes == 3) {
+            $data->playtimes = 3;
+        } else {
+            $data->playtimes = 2;
+        }
+
         // app凭证
         $data->sig = hash("sha256",
             "appkey=".$this->appkey."&random=".$random."&time="
