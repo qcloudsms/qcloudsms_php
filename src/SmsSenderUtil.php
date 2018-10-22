@@ -197,7 +197,7 @@ class SmsSenderUtil
         } else {
             $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             if (200 != $code) {
-                $result = "{ \"result\":" . -1 . ",\"errmsg\":\"". $rsp
+                $result = "{ \"result\":" . -1 . ",\"errmsg\":\"". $code
                     . " " . curl_error($curl) ."\"}";
             }
         }
