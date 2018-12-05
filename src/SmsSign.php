@@ -34,7 +34,16 @@ class SmsSign
         $this->util = new SmsSenderUtil();
     }
 
-    public function addSmsSign($text,$remark = '',$international = 0, $pic = '')
+    /**
+     * 添加签名
+     *
+     * @param string $text  签名内容，不带【】，例如：【腾讯科技】这个签名，这里填"腾讯科技"
+     * @param string $remark    签名备注，比如申请原因，使用场景等
+     * @param int $international    0表示国内短信，1表示海外短信，默认为0
+     * @param string $pic   签名对应的资质证明图片进行 base64 编码格式转换后的字符串base64 编码格式工具: http://base64.xpcha.com/indexie.php ，注意编译后去掉字符串前面的前缀：“data:image/jpeg;base64,”
+     * @return string
+     */
+    public function addSmsSign($text, $remark = '', $international = 0, $pic = '')
     {
         $this->url = $this->url.self::ADD_SIGN_URI;
         $random = $this->util->getRandom();
@@ -51,7 +60,16 @@ class SmsSign
         return $this->util->sendCurlPost($wholeUrl, $data);
     }
 
-    public function modSmsSign($sign_id,$text,$remark = '',$international = 0, $pic = '')
+    /**
+     *  修改签名
+     *
+     * @param int $sign_id  待修改的签名对应的签名 id
+     * @param string $text  新的签名内容，不带【】，例如：改为【腾讯科技】这个签名，这里填"腾讯科技"
+     * @param string $remark    新的签名备注，比如申请原因，使用场景等
+     * @param string $pic   签名对应的资质证明图片进行 base64 编码格式转换后的字符串base64 编码格式工具: http://base64.xpcha.com/indexie.php ，注意编译后去掉字符串前面的前缀：“data:image/jpeg;base64,”
+     * @return string
+     */
+    public function modSmsSign($sign_id, $text, $remark = '', $pic = '')
     {
         $this->url = $this->url.self::MOD_SIGN_URI;
         $random = $this->util->getRandom();
@@ -64,11 +82,16 @@ class SmsSign
         $data->text = $text;
         $data->pic = $pic;
         $data->sign_id = $sign_id;
-        $data->international = $international;
         $data->remark = $remark;
         return $this->util->sendCurlPost($wholeUrl, $data);
     }
 
+    /**
+     *  删除签名
+     *
+     * @param array $sign_id    签名 id，也可以通过值指定一个 "sign_id"：123
+     * @return string
+     */
     public function delSmsSign($sign_id)
     {
         $this->url = $this->url.self::DEL_SIGN_URI;
@@ -83,6 +106,12 @@ class SmsSign
         return $this->util->sendCurlPost($wholeUrl, $data);
     }
 
+    /**
+     *  短信签名状态查询
+     *
+     * @param array $sign_id    签名 id，也可以通过值指定一个 "sign_id"：123
+     * @return string
+     */
     public function getSmsSign($sign_id)
     {
         $this->url = $this->url.self::GET_SIGN_URI;
