@@ -34,7 +34,7 @@ class SmsStatusPuller
      *
      * @param int $type 拉取类型，0表示回执结果，1表示回复信息
      * @param int $max  最大条数，最多100
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5810
      */
     private function pull($type, $max)
     {
@@ -55,7 +55,7 @@ class SmsStatusPuller
      * 拉取回执结果
      *
      * @param int $max 拉取最大条数，最多100
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5810
      */
     public function pullCallback($max)
     {
@@ -66,7 +66,7 @@ class SmsStatusPuller
      * 拉取回复信息
      *
      * @param int $max 拉取最大条数，最多100
-     * @return string 应答json字符串，详细内容参见腾讯云协议文档
+     * @return string 应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5810
      */
     public function pullReply($max)
     {

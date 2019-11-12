@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Qcloud\Sms\SmsMobileStatusPuller | API</title>
+    <title>Qcloud\Sms\SmsSign | API</title>
 
             <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
     
     </head>
 
-    <body id="class" data-name="class:Qcloud_Sms_SmsMobileStatusPuller" data-root-path="../../">
+    <body id="class" data-name="class:Qcloud_Sms_SmsSign" data-root-path="../../">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -66,27 +66,27 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../Qcloud.html">Qcloud</a></li><li class="backslash">\</li><li><a href="../../Qcloud/Sms.html">Sms</a></li><li class="backslash">\</li><li>SmsMobileStatusPuller</li>
+                        <li><a href="../../Qcloud.html">Qcloud</a></li><li class="backslash">\</li><li><a href="../../Qcloud/Sms.html">Sms</a></li><li class="backslash">\</li><li>SmsSign</li>
             </ol>
         </div>
                 <div id="page-content">
                 
     <div class="page-header">
         <h1>
-            SmsMobileStatusPuller
+            SmsSign
                 
         </h1>
     </div>
 
     <p>    class
-    <strong>SmsMobileStatusPuller</strong>
+    <strong>SmsSign</strong>
 </p>
 
         
     
 
             <div class="description">
-            <p>拉取单个手机短信状态类</p>                                </div>
+            <p>短信签名类</p>                                </div>
     
     
     
@@ -109,9 +109,9 @@
                     string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_pullCallback">pullCallback</a>(string $nationCode, string $mobile, int $beginTime, int $endTime, int $max)
+                    <a href="#method_addSign">addSign</a>(string $text, <abbr title="Qcloud\Sms\img">img</abbr> $pic = &quot;&quot;, string $remark = &quot;&quot;)
         
-                                            <p>拉取回执结果</p>                </div>
+                                            <p>添加短信签名</p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -119,9 +119,29 @@
                     string
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_pullReply">pullReply</a>(string $nationCode, string $mobile, int $beginTime, int $endTime, int $max)
+                    <a href="#method_modSign">modSign</a>(int $sign_id, string $text, <abbr title="Qcloud\Sms\img">img</abbr> $pic = &quot;&quot;, string $remark = &quot;&quot;)
         
-                                            <p>拉取回复信息</p>                </div>
+                                            <p>修改短信签名</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_delSign">delSign</a>($sign_ids)
+        
+                                            <p>删除短信签名</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSign">getSign</a>($sign_ids)
+        
+                                            <p>短信签名状态查询</p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -167,10 +187,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_pullCallback">
-        <div class="location">at         line 72</div>
+                    <h3 id="method_addSign">
+        <div class="location">at         line 40</div>
         <code>                    string
-    <strong>pullCallback</strong>(string $nationCode, string $mobile, int $beginTime, int $endTime, int $max)
+    <strong>addSign</strong>(string $text, <abbr title="Qcloud\Sms\img">img</abbr> $pic = &quot;&quot;, string $remark = &quot;&quot;)
         </code>
     </h3>
     <div class="details">
@@ -178,35 +198,25 @@
     
 
                     <div class="method-description">
-                                    <p>拉取回执结果</p>                                                </div>
+                                    <p>添加短信签名</p>                                                </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
                 <td>string</td>
-                <td>$nationCode</td>
-                <td>国家码，如 86 为中国</td>
+                <td>$text</td>
+                <td>签名内容，不带【】，例如：【腾讯科技】这个签名，这里填"腾讯科技"</td>
+            </tr>
+                    <tr>
+                <td><abbr title="Qcloud\Sms\img">img</abbr></td>
+                <td>$pic</td>
+                <td>签名对应的资质证明图片地址</td>
             </tr>
                     <tr>
                 <td>string</td>
-                <td>$mobile</td>
-                <td>不带国家码的手机号</td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$beginTime</td>
-                <td>开始时间(unix timestamp)</td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$endTime</td>
-                <td>结束时间(unix timestamp)</td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$max</td>
-                <td>拉取最大条数，最多100</td>
+                <td>$remark</td>
+                <td>签名备注，比如申请原因，使用场景等</td>
             </tr>
             </table>
 
@@ -216,7 +226,7 @@
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td>应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5811</td>
+            <td>应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/6038</td>
         </tr>
     </table>
 
@@ -227,10 +237,10 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_pullReply">
-        <div class="location">at         line 87</div>
+                    <h3 id="method_modSign">
+        <div class="location">at         line 67</div>
         <code>                    string
-    <strong>pullReply</strong>(string $nationCode, string $mobile, int $beginTime, int $endTime, int $max)
+    <strong>modSign</strong>(int $sign_id, string $text, <abbr title="Qcloud\Sms\img">img</abbr> $pic = &quot;&quot;, string $remark = &quot;&quot;)
         </code>
     </h3>
     <div class="details">
@@ -238,35 +248,30 @@
     
 
                     <div class="method-description">
-                                    <p>拉取回复信息</p>                                                </div>
+                                    <p>修改短信签名</p>                    <p>已审核通过的签名不允许修改。</p>                            </div>
                 <div class="tags">
                             <h4>Parameters</h4>
 
                     <table class="table table-condensed">
                     <tr>
+                <td>int</td>
+                <td>$sign_id</td>
+                <td>待修改的签名对应的签名 id</td>
+            </tr>
+                    <tr>
                 <td>string</td>
-                <td>$nationCode</td>
-                <td>国家码，如 86 为中国</td>
+                <td>$text</td>
+                <td>新的签名内容，不带【】，例如：改为【腾讯科技】这个签名，这里填"腾讯科技"</td>
+            </tr>
+                    <tr>
+                <td><abbr title="Qcloud\Sms\img">img</abbr></td>
+                <td>$pic</td>
+                <td>签名对应的资质证明图片地址</td>
             </tr>
                     <tr>
                 <td>string</td>
-                <td>$mobile</td>
-                <td>不带国家码的手机号</td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$beginTime</td>
-                <td>开始时间(unix timestamp)</td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$endTime</td>
-                <td>结束时间(unix timestamp)</td>
-            </tr>
-                    <tr>
-                <td>int</td>
-                <td>$max</td>
-                <td>拉取最大条数，最多100</td>
+                <td>$remark</td>
+                <td>签名备注，比如申请原因，使用场景等</td>
             </tr>
             </table>
 
@@ -276,7 +281,87 @@
                     <table class="table table-condensed">
         <tr>
             <td>string</td>
-            <td>应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/5811</td>
+            <td>应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/8650</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_delSign">
+        <div class="location">at         line 90</div>
+        <code>                    string
+    <strong>delSign</strong>($sign_ids)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>删除短信签名</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$sign_ids</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/6039</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSign">
+        <div class="location">at         line 110</div>
+        <code>                    string
+    <strong>getSign</strong>($sign_ids)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>短信签名状态查询</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$sign_ids</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>应答json字符串，详细内容参见腾讯云协议文档https://cloud.tencent.com/document/product/382/6040</td>
         </tr>
     </table>
 
