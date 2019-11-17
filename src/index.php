@@ -11,3 +11,6 @@ require_once __DIR__ . "/SmsVoiceVerifyCodeSender.php";
 require_once __DIR__ . "/VoiceFileUploader.php";
 require_once __DIR__ . "/FileVoiceSender.php";
 require_once __DIR__ . "/TtsVoiceSender.php";
+
+require_once __DIR__ . "/SmsSign.php";
+require_once __DIR__ . "/SmsTemplate.php";
